@@ -9,6 +9,7 @@ def os_what():
 
 
 def excute():
+    pass
 
 
 def main():
