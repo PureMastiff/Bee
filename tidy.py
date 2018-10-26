@@ -20,7 +20,7 @@ class TidyUpDownload():
         return time.asctime(s_time)
 
     def filelist(self):
-        cmd = "ls -h"
+        cmd = "ls -lh"
         print "1111"
         r = execute(cmd)
         return r
@@ -28,6 +28,7 @@ class TidyUpDownload():
 if __name__ == '__main__':
     t = TidyUpDownload()
     print t.s_time()
-    t.filelist()
+    print(t.filelist())
+
 
 
