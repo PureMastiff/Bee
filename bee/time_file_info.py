@@ -32,13 +32,6 @@ def get_file_change_time(file_path):
     return timestamp_to_time(c_time)
 
 
-def _get_file_size(file_path):
-    '''获取文件的大小, 以"M"为单位'''
-    file_path = unicode(file_path, 'utf8')
-    fsize = os.path.getsize(file_path)
-    return fsize/float(1024*1024)
-
-
 def get_file_size(name):
     cmd_fs = 'ls -lh | grep {}'.format(name)
     ret = _common.execute(cmd_fs).rstrip()
@@ -49,7 +42,7 @@ def get_file_size(name):
 
 
 def main():
-    r = get_file_size("srt")
+    r = get_file_access_time("view.py")
     print r
 
 if __name__ == '__main__':

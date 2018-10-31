@@ -4,7 +4,7 @@ import os
 import time
 from os.path import realpath, dirname
 from bee._common import execute
-from bee.sort import sort_name
+from bee.sort import sort_name, sort_size, sort_date
 from bee.view import show
 
 
@@ -26,9 +26,10 @@ class TidyUpDownload():
         ROOT_DIR = dirname(realpath(__file__))
         return ROOT_DIR
 
-    def filelist(self):
+    def filelist(self, cmd):
         #filelist = [{'1.py': [name='', size='',date='']}, {'2.py': [name='', size='',date='']}]
-        cmd = "ls /Users/guogx/Downloads"
+
+        #cmd = "ls /Users/guogx/Downloads"
         ret = execute(cmd)
         ret = ret.strip().split('\n')
         return ret
@@ -37,6 +38,9 @@ class TidyUpDownload():
 if __name__ == '__main__':
     t = TidyUpDownload()
     #print t.s_time()
-    flist = t.filelist()
+    cmd = "ls /Users/guogx/Downloads"
+    flist = t.filelist(cmd)
+    print flist
     #print(flist)
-    show(sort_name(flist))
+    #show(sort_name(flist))
+    show(sort_date(flist))
