@@ -5,18 +5,6 @@ from _common import execute
 from time_file_info import get_file_modify_time
 
 
-CWD = "/Users/guogx/Downloads"
-
-
-def dir_or_file(path):
-    if os.path.isdir(path):
-        return True
-    elif os.path.isfile(path):
-        return False
-    else:
-        return -1
-
-
 def getfilename(filename):
     '''获取文件的后缀名.doc .jpg .tgz'''
     ret = filename.split(".")
@@ -26,7 +14,7 @@ def getfilename(filename):
         return "child-dir"
 
 
-def sort_name(filelist):
+def sort_name(filelist, path=None):
     '''以类型进行排序输出
     filelist = ['1.py', '2.py', '3.doc', '4.pdf', '7.py']
     {'.doc': ['3.doc'], '.pdf': ['4.pdf'], '.py': ['1.py', '2.py', '7.py']}
@@ -50,12 +38,12 @@ def get_file_size(file_path):
     return fsize/float(1024)
 
 
-def sort_size(filelist):
+def sort_size(filelist, path):
     '''以文件大小进行排序输出'''
     size_info = []
     s_sizeinfo = {}
     for i in filelist:
-        filepath = '{}/{}'.format(CWD, i)
+        filepath = '{}/{}'.format(path, i)
         if os.path.isfile(filepath):
             ret = get_file_size(filepath)
             if ret <= 1024:
@@ -101,19 +89,19 @@ def sort_size(filelist):
     return s_sizeinfo
 
 
-def getfiledate(filename):
+def getfiledate(filename, path):
     '''获取文件的创建日期'''
-    filepath = '{}/{}'.format(CWD, filename)
+    filepath = '{}/{}'.format(path, filename)
     m_time = get_file_modify_time(filepath)
     return m_time
 
 
-def sort_date(filelist):
+def sort_date(filelist, path):
     '''以日期不同进行排序出'''
     date_info = []
     s_dateinfo = {}
     for file in filelist:
-        ret = getfiledate(file)
+        ret = getfiledate(file, path)
         date = ret.split(' ')[0]
         if date in date_info:
             s_dateinfo[date].append(file)
