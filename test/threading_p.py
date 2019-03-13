@@ -64,4 +64,4 @@ def func4():
         t.start()
 
 if __name__ == '__main__':
-    func4()
+    func3()
